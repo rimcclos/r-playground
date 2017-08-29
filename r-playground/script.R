@@ -7,8 +7,11 @@ library(ggplot2)
 
 ## Taxi Cab Data
 
-july <- read.csv(file = "C:/Users/rimcclos/Downloads/yellow_tripdata_2016-07.csv", header = TRUE, row.names = NULL, sep = ",", dec = ".", quote = "\"", comment.char = "")
-#july <- read.csv(file = "C:/Users/rimcclos/Downloads/yellow_tripdata_2016-07.csv", header = TRUE, row.names = NULL, encoding = "UTF-8", sep = ",", dec = ".", quote = "\"", comment.char = "")
+july <- read.csv(file = "https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-07.csv", header = FALSE, row.names = NULL, sep = ",", dec = ".", quote = "\"", comment.char = "")
+
+colnames(july) <- apply(july[1,], 1, as.character)
+july <- july[-1,]
+
 
 #july2016 url: https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-07.csv
 #aug2016 url: https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2016-08.csv
@@ -19,6 +22,7 @@ july$RatecodeID <- as.factor(july$RatecodeID)
 july$PULocationID <- as.factor(july$PULocationID)
 july$DOLocationID <- as.factor(july$DOLocationID)
 july$payment_type <- as.factor(july$payment_type)
+
 
 
 aug <- read.csv(file = "C:/Users/rimcclos/Downloads/yellow_tripdata_2016-08.csv", header = TRUE, row.names = NULL, sep = ",", dec = ".", quote = "\"", comment.char = "")
